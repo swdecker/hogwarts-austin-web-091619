@@ -25,9 +25,11 @@ class HogCard extends Component {
                 </div>
                 <div className="content">
                     <p className="header">{this.props.hogName}</p>
-                {this.state.showDetails ? <div class="meta"><p>Weight: {this.props.weight}</p></div>  :"" }
-                {this.state.showDetails ? <div class="meta"><p>Specialty: {this.props.specialty}</p></div>  :"" }
-                {this.state.showDetails ? <div class="meta"><p>Highest Medal Achieved: {this.props.medal}</p></div>  :"" }
+                    
+                {this.state.showDetails && <div class="meta"><p>Weight: {this.props.weight}</p>
+                <p>Specialty: {this.props.specialty}</p>
+                <p>Highest Medal Achieved: {this.props.medal}</p> 
+                </div>}
                 </div>
                 </div>
             </div>

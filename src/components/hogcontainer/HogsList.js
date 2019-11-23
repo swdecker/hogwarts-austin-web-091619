@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import HogCard from './HogCard';
 import ag from "../../hog-imgs/augustus_gloop.jpg"
 import bog from "../../hog-imgs/bay_of_pigs.jpg"
@@ -14,9 +14,11 @@ import t from "../../hog-imgs/trouble.jpg"
 import ts from "../../hog-imgs/truffleshuffle.jpg"
 import pc from "../../hog-imgs/porkchop.jpg"
 
-class HogsList extends Component {
 
-    hogsMapper = {
+
+const HogsList = (props) => {
+
+    const hogsMapper = {
         "Augustus Gloop":ag,
         "Bay of Pigs":bog,
         "Cherub":c ,
@@ -32,20 +34,27 @@ class HogsList extends Component {
         "Porkchop": pc
     }
 
-    showHogs = () => {
+    const showHogs = () => {
         
-        return this.props.hogs.map((hog, idx) => < HogCard specialty={hog.specialty} medal={hog["highest medal achieved"]} weight={hog.weight} hogName={hog.name} key={idx} image={this.hogsMapper[hog.name]} />)
+        return props.hogs.map((hog, idx) => < HogCard
+        specialty={hog.specialty}
+        medal={hog["highest medal achieved"]}
+        weight={hog.weight} 
+        hogName={hog.name}
+        key={idx}
+        image={hogsMapper[hog.name]}
+         />)
         
     }
 
 
-    render() {
+    
         return (
             <div className="ui link cards">
-                {this.showHogs()}
+                {showHogs()}
             </div>
         );
-    }
+    
 }
 
 export default HogsList;

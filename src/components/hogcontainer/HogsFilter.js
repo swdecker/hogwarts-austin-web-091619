@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
 class HogsFilter extends Component {
-    state = {
-        isChecked:false
-        // sort:"name"
+    // state = {
+    //     isChecked:false
+    //     // sort:"name"
     
-    }
+    // }
     handleGreased=()=>{
-        this.setState({
-            isChecked: !this.state.isChecked 
-        })
-        this.props.filteredHogs(!this.state.isChecked)
+        // this.setState({
+        //     isChecked: !this.state.isChecked 
+        // })
+        this.props.filteredHogs()
     }
     
     handleSubmit = (event) => {
@@ -28,7 +28,7 @@ class HogsFilter extends Component {
         return (
             <div style={{marginBottom: '50px'}}>
                 <form onSubmit={this.handleSubmit}>
-                    <p>You want them greasy hogs only ?</p> <input onChange={this.handleGreased} value={this.state.isChecked} type='checkbox' className='greased' />
+                    <p>You want them greasy hogs only ?</p> <input onChange={this.handleGreased} value={this.props.isGreased} type='checkbox' className='greased' />
                      <select onChange={this.handleSort}>
                         <option value="name">Alphabetical</option>
                         <option value="weight">Weight</option>

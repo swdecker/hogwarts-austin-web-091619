@@ -4,16 +4,16 @@ import HogsList from './HogsList';
 
 class HogsContainer extends Component {
     state = {
-        hogsToShow: [],
+        
         greased: false,
         sort: "name",
-        hogsToHide: []
+        
     }
 
-    componentDidMount(){
-        console.log(this.props.hogs)
-        this.setState({hogsToShow: this.props.hogs})
-    }
+    // componentDidMount(){
+        
+    //     this.setState({hogsToShow: this.props.hogs})
+    // }
 
 hogUpdater=()=>{
     let newHogs = [...this.props.hogs].sort((hog1,hog2)=>{
@@ -26,11 +26,12 @@ hogUpdater=()=>{
     if(this.state.greased){
         newHogs = newHogs.filter((hog)=>hog.greased === true)
      }
-     this.setState({hogsToShow: newHogs})
+    //  this.setState({hogsToShow: newHogs})
+     return newHogs
 }
-componentDidUpdate(){
-    this.hogUpdater()
-}
+// componentDidUpdate(){
+//     this.hogUpdater()
+// }
 
 // sortHogs = (sort) => {
 //     let newHogs = [...this.props.hogs].sort((hog1,hog2)=>{
@@ -54,8 +55,8 @@ componentDidUpdate(){
         
 //     this.setState({hogsToShow: newHogs})
 // }
-filterHogs = (greased)=>{
-    this.setState({greased: greased})
+filterHogs = ()=>{
+    this.setState({greased: !this.state.greased})
 }
 sortHogs = (sort)=>{
     this.setState({sort:sort})
@@ -65,8 +66,8 @@ sortHogs = (sort)=>{
     render() {
         return (
             <div>
-                <HogsFilter filteredHogs={this.filterHogs} sortedHogs={this.sortHogs} />
-                <HogsList hogs={this.state.hogsToShow} />
+                <HogsFilter isFiltered={this.state.greased} sortType={this.state.sort} filteredHogs={this.filterHogs} sortedHogs={this.sortHogs} />
+                <HogsList hogs={this.hogUpdater()} />
             </div>
         );
     }
